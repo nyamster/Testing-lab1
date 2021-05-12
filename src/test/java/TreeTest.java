@@ -1,3 +1,6 @@
+import model.Book;
+import model.Eagle;
+import model.Spider;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
@@ -6,9 +9,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TreeTest {
+    private RedBlackTree t;
+
+    @BeforeEach
+    void init() {
+        t = new RedBlackTree();
+    }
+
     @Test
     void repeatElementTest() {
-        RedBlackTree t = new RedBlackTree();
         t.insert(0);
 
         assertEquals(0, t.insert(0));
@@ -16,34 +25,28 @@ public class TreeTest {
 
     @Test
     void bigElementTest() {
-        RedBlackTree t = new RedBlackTree();
-
         assertEquals(1, t.insert(Integer.MAX_VALUE));
         assertEquals(1, t.insert(Integer.MIN_VALUE));
     }
 
     @Test
     void clearTest() {
-        RedBlackTree t = new RedBlackTree();
         t.insert(0);
         t.clear();
 
-        assertEquals(true, t.isEmpty());
+        assertTrue(t.isEmpty());
     }
 
     @Test
     void emptyTest() {
-        RedBlackTree t = new RedBlackTree();
-
-        assertEquals(true, t.isEmpty());
-        assertEquals(null, t.findMax());
-        assertEquals(null, t.findMin());
-        assertEquals(null, t.find(0));
+        assertTrue(t.isEmpty());
+        assertNull(t.findMax());
+        assertNull(t.findMin());
+        assertNull(t.find(0));
     }
 
     @Test
     void bigTreeTest() {
-        RedBlackTree t = new RedBlackTree();
         final int NUMS = 400000;
         final int GAP = 35461;
 
@@ -55,5 +58,14 @@ public class TreeTest {
 
         for (int i = 1; i < NUMS; i++)
             assertEquals(i, t.find(i));
+
+        t.clear();
+        t.insert(10);
+        t.insert(12);
+        t.insert(11);
+
+        assertEquals(10, t.find(10));
+        assertEquals(11, t.find(11));
+        assertEquals(12, t.find(12));
     }
 }

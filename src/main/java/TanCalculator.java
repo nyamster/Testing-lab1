@@ -1,7 +1,6 @@
 public class TanCalculator {
 
     private static final int AMOUNT = 30;
-    //private static final double EPS = 1E-10;
 
     public static Double calculateTan(Double x, double accuracy) {
         double c = cos(x);

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TanCalculatorTest {
 
     private static final double DELTA = 0.05;
-    private static final double INFINITY = 1. / 0;
     private static final double PI = 3.141592653589793D;
     private static final double EPS = 1E-10;
 
@@ -24,9 +23,9 @@ public class TanCalculatorTest {
     @ParameterizedTest(name = "Infinity test tan({0} PI / {1})")
     @CsvSource(value = {"1, 2", "-1, 2", "3, 2", "-3, 2"})
     void infinityTest(Integer numerator, Integer denominator) {
-        assertEquals(INFINITY, TanCalculator.calculateTan(numerator * PI / denominator, EPS), DELTA);
-        assertNotEquals(INFINITY, TanCalculator.calculateTan(numerator * PI / denominator + DELTA, EPS), DELTA);
-        assertNotEquals(INFINITY, TanCalculator.calculateTan(numerator * PI / denominator - DELTA, EPS), DELTA);
+        assertEquals(Double.POSITIVE_INFINITY, TanCalculator.calculateTan(numerator * PI / denominator, EPS), DELTA);
+        assertNotEquals(Double.POSITIVE_INFINITY, TanCalculator.calculateTan(numerator * PI / denominator + DELTA, EPS), DELTA);
+        assertNotEquals(Double.POSITIVE_INFINITY, TanCalculator.calculateTan(numerator * PI / denominator - DELTA, EPS), DELTA);
     }
 
     @Test

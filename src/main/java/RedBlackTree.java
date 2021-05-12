@@ -1,4 +1,38 @@
 public class RedBlackTree {
+    private static class RedBlackNode {
+        RedBlackNode(Comparable theElement) {
+            this(theElement, null, null);
+        }
+
+        RedBlackNode(Comparable theElement, RedBlackNode lt, RedBlackNode rt) {
+            element = theElement;
+            left = lt;
+            right = rt;
+            color = RedBlackTree.BLACK;
+        }
+
+        Comparable element;
+        RedBlackNode left;
+        RedBlackNode right;
+        int color;
+    }
+
+
+    private RedBlackNode header;
+    private static RedBlackNode nullNode;
+    static
+    {
+        nullNode = new RedBlackNode(null);
+        nullNode.left = nullNode.right = nullNode;
+    }
+
+    private static final int BLACK = 1;
+    private static final int RED = 0;
+
+    private static RedBlackNode current;
+    private static RedBlackNode parent;
+    private static RedBlackNode grand;
+    private static RedBlackNode great;
 
     public RedBlackTree() {
         header = new RedBlackNode(null);
@@ -137,40 +171,4 @@ public class RedBlackTree {
         k2.left = k1;
         return k2;
     }
-
-
-    private static class RedBlackNode {
-        RedBlackNode(Comparable theElement) {
-            this(theElement, null, null);
-        }
-
-        RedBlackNode(Comparable theElement, RedBlackNode lt, RedBlackNode rt) {
-            element = theElement;
-            left = lt;
-            right = rt;
-            color = RedBlackTree.BLACK;
-        }
-
-        Comparable element;
-        RedBlackNode left;
-        RedBlackNode right;
-        int color;
-    }
-
-
-    private RedBlackNode header;
-    private static RedBlackNode nullNode;
-    static
-    {
-        nullNode = new RedBlackNode(null);
-        nullNode.left = nullNode.right = nullNode;
-    }
-
-    private static final int BLACK = 1;
-    private static final int RED = 0;
-
-    private static RedBlackNode current;
-    private static RedBlackNode parent;
-    private static RedBlackNode grand;
-    private static RedBlackNode great;
 }
